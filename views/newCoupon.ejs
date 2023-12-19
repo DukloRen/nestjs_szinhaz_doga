@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html>
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Kezdőlap</a>
+          <a class="nav-link" href="/">Kezdőlap</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/newCoupon">Új Kupon</a>
@@ -30,27 +30,29 @@
   </nav>
 
 
-    <h1 class="text-center">Kezdőoldal</h1>
-    <p><b>Érvényes kuponok:</b></p>
-    <table class="table">
-        <thead>
-            <th>Előadás címe</th>
-            <th>Kupon százaléka</th>
-            <th>Kupon kódja</th>
-        </thead>
-        <tbody>
-            <% index.forEach( item => { %>
-                <tr>
-                    <td><%= item.title %></td>
-                    <td><%= item.percentage %>%</td>
-                    <td><%= item.code %></td>
-                </tr>
-            <% }); %>
-        </tbody>
-    </table>
+    <h1 class="text-center">Új kupon felvétele a táblázatba és adatbázisba</h1>
+    <form method="post" class="form-group">
+        <label class="p-2">
+            Előadás címe:
+            <input type="text" name="title" class="form-control">
+        </label><br>
+    
+        <label class="p-2">
+            Kupon százaléka:
+            <input type="number" name="percentage" class="form-control">
+        </label><br>
+    
+        <label class="p-2">
+            Kupon kódja:
+            <input type="text" name="code" class="form-control">
+        </label><br>
 
-    <div class="text-center">
-        <a href="/newCoupon" class="btn btn-primary">Új kupon hozzáadása</a>
-    </div>
+        <% errors.forEach(item => { %>
+            <p class="text-danger p-2"><%= item %></p>
+        <% }); %>
+
+        <input type="submit" value="Felvétel" class="btn btn-primary m-2">
+        <a href="/" class="btn btn-primary">Mégse</a>
+    </form>
 </body>
 </html>
